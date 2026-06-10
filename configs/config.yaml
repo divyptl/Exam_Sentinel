@@ -1,0 +1,51 @@
+# ExamSentinel Configuration
+# configs/config.yaml
+
+model:
+  backbone: "efficientnet_b3"
+  img_size: 256
+  num_heads: 4                   # deepfake, recapture, splicing, forgery
+  srm_filters: 30
+  bayar_channels: 3
+  dropout: 0.3
+  mixed_precision: true          # RTX 3060 optimisation
+
+training:
+  batch_size: 16                 # fits RTX 3060 6GB
+  lr: 0.0001
+  epochs: 30
+  weight_decay: 0.0001
+  scheduler: "cosine"
+  warmup_epochs: 3
+  grad_clip: 1.0
+  num_workers: 4
+
+inference:
+  interval_seconds: 5            # run detection every 5s
+  confidence_threshold: 0.65
+  device: "cuda"                 # falls back to cpu automatically
+
+decision_engine:
+  green_threshold: 0.65          # below = clear
+  yellow_threshold: 0.72         # warn student
+  orange_threshold: 0.82         # flag session for review
+  red_threshold: 0.91            # auto-suspend session
+  sustained_gaze_seconds: 3.5    # off-screen gaze limit
+  consecutive_flags_for_red: 3   # 3 orange flags → auto RED
+
+gaze:
+  off_screen_threshold_deg: 30   # degrees from center = off screen
+  blink_rate_min: 0.1            # blinks/sec; too low = reading from phone
+  sustained_window_frames: 21    # ~3.5s at 6fps analysis
+
+dashboard:
+  port: 8501
+  update_interval_ms: 500
+  log_path: "logs/events.jsonl"
+  max_log_lines: 10000
+
+paths:
+  weights_dir: "models/weights"
+  log_dir: "logs"
+  data_dir: "data"
+  demo_dir: "data/demo"
