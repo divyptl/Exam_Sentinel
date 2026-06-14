@@ -1,1 +1,1 @@
-"""ExamSentinel utilities"""
+"""ExamSentinel utils"""

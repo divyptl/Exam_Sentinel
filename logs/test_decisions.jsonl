@@ -1,0 +1,2 @@
+{"timestamp": 1781426731.399614, "tier": "GREEN", "reasons": [], "action": "clear", "confidence": 0.03233333333333333, "scores": {"score_deepfake": 0.05, "score_recapture": 0.03, "score_splicing": 0.02, "score_forgery": 0.02}, "feedback": null}
+{"timestamp": 1781426731.4009078, "tier": "ORANGE", "reasons": ["HIGH deepfake (0.95)", "Hard rule: deepfake > 0.90"], "action": "flag_session", "confidence": 0.32, "scores": {"score_deepfake": 0.95, "score_recapture": 0.05, "score_splicing": 0.05, "score_forgery": 0.05}, "feedback": null}
